@@ -8,7 +8,7 @@ export const getFile = async (
   next: NextFunction
 ) => {
   try {
-    const fileName = req.params
+    const { fileName } = req.params;
     const filePath = path.join(__dirname, "..", `files/${fileName}`);
     const fileExists = fs.existsSync(filePath);
     if (!fileExists) {
