@@ -1,6 +1,6 @@
-import express from "express";
 import { postCar } from "../controllers/cars";
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
 
 router.post("/", postCar);
 

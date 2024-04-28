@@ -63,8 +63,8 @@ const postCar = async (page: Page, car_listing: CarListing) => {
     
     await page.goto(page_url);
     
-    await page.waitForSelector('.vehicle-gallery >>> .card-title::-p-text("Verificando datos")');
-    console.log("finished car")
+    await page.waitForFunction(() => !document.querySelector(".loading-img"), { timeout: 10000 });
+    await page.waitForSelector('h2 ::-p-text("Acura ILX (2018)")');
 }
 
 export default postCar;
