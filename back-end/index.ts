@@ -1,24 +1,58 @@
-import { car_listing } from "./data/car";
-import { login_form } from "./data/login";
-import { setupScraper, waitForLogin, waitForPostCar } from "./functions";
+import { Request, Response, NextFunction } from "express";
+import { applyRoutes } from "./routes";
 
-const puppeteer = require("puppeteer");
+const express = require("express");
+const app = express();
+const port = 4000;
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-const main = async () => {
-  try {
-    
-    const page = await setupScraper("https://www.seminuevos.com");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-    await waitForLogin(page, login_form);
+// Permite URL de desarrollo y producción
+const allowedOrigins = ["http://localhost:5173", "http://localhost:4000"];
 
-    await page.screenshot({ path: `${__dirname}/data/screenshot_${new Date().toISOString()}.png`, type: "png" });
-  
-} catch (error) {
-    console.log("Error:");
-    console.log(error);
-  }
+// Evitar errores de CORS
+app.use(
+  cors({
+    origin: function (origin: string, callback: Function) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin: " +
+          origin;
+        console.log(msg);
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
-  //browser.close();
-};
+// Agregamos las rutas
+applyRoutes("/", app);
 
-main();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(`${__dirname}/build`));
+
+  app.get("/*", (req: Request, res: Response, next: NextFunction) => {
+    res.sendFile(`${__dirname}/build/index.html`);
+  });
+}
+
+// Función para manejar errores, se puede conectar con Sentry o similares
+app.use(function onError(
+  error: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  res.status(500).send({ error });
+  console.log(error);
+});
+
+app.listen(port, () => {
+  console.log(`Scraper Server running on port ${port}`);
+});

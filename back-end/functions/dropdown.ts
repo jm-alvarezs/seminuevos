@@ -3,6 +3,12 @@ import { Page } from "puppeteer";
 export const waitFor = (timeout: number) =>
   new Promise((resolve, reject) => setTimeout(resolve, timeout));
 
+/**
+ * 
+ * @param page Instancia de puppeteer
+ * @param option Nombre del elemento del form
+ * @param value Valor a seleccionar
+ */
 export const handleDropdownSelect = async (
   page: Page,
   option: string,

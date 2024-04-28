@@ -11,6 +11,9 @@ import {
   LinearProgress,
 } from "@mui/material";
 
+/**
+ * Formulario con lógica para publicar un auto
+ */
 const CarListingForm = () => {
   const [price, setPrice] = useState(0);
   const [error, setError] = useState<null | string>(null);

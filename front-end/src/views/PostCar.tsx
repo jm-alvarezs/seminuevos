@@ -1,6 +1,9 @@
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import CarListingForm from "../components/CarListingForm";
 
+/**
+ * Pantalla con la que interactúa el usuario
+ */
 const PostCar = () => {
   return (
     <Container maxWidth="xs">

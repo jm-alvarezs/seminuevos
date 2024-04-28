@@ -1,3 +1,6 @@
+/**
+ * Representa un elemento en DOM para input de usuario
+ */
 export interface ScrapeFormElement {
     selector: string;
     value: string;
@@ -42,6 +45,9 @@ export interface Location {
     cities: string;
 }
 
+/**
+ * CarListing representa el anuncio, se compone de un auto y ubicación
+ */
 export interface CarListing {
     phone: string;
     price: number;

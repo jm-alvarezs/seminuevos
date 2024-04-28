@@ -1,9 +1,11 @@
 import login from "./login";
 import postcar from "./postcar";
 import puppeteer from "puppeteer";
+import takeScreenshot from "./screenshot";
 
 export const waitForLogin = login;
 export const waitForPostCar = postcar;
+export const waitForScreenshot = takeScreenshot;
 
 export const setupScraper = async (start_url: string) => {
     const browser = await puppeteer.launch({ headless: false });

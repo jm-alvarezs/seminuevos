@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index.ts",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "serve": "NODE_ENV=production node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   "homepage": "https://github.com/jm-alvarezs/seminuevos#readme",
   "dependencies": {
     "@mui/icons-material": "^5.15.15",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "puppeteer": "^22.7.1"
   },
   "devDependencies": {

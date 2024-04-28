@@ -3,6 +3,11 @@ import { handleDropdownSelect, waitFor } from "./dropdown";
 import { handleTypeInput } from "./input";
 import { CarListing } from "../types";
 
+/**
+ * Función para crear un anuncio de un auto en seminuevos.com
+ * @param page Instancia de Puppeteer
+ * @param car_listing Información completa del auto. Ver types/index.ts
+ */
 const postCar = async (page: Page, car_listing: CarListing) => {
     const post_link = await page.waitForSelector('a[href="/wizard?f_dealer_id=-1"');
     post_link?.click();    
