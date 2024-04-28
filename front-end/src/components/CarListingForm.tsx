@@ -69,7 +69,7 @@ const CarListingForm = () => {
             src={screenshotUrl}
             alt="Anuncio Publicado"
             loading="lazy"
-            style={{ maxWidth: "100%", width: "100%" }}
+            style={{ maxWidth: "100%", width: "100%", marginBottom: 16 }}
           />
           <Alert severity="success">Anuncio publicado con éxito</Alert>
         </Box>
