@@ -1,5 +1,5 @@
-import { car_listing } from "./forms/car";
-import { login_form } from "./forms/login";
+import { car_listing } from "./data/car";
+import { login_form } from "./data/login";
 import { waitForLogin, waitForPostCar } from "./functions";
 
 const puppeteer = require("puppeteer");
@@ -18,7 +18,12 @@ const main = async () => {
     
     await waitForLogin(page, login_form);
 
-    await waitForPostCar(page, car_listing);
+    const current_listing = {
+      ...car_listing,
+      pictures: [`${__dirname}/data/frente.jpg`, `${__dirname}/data/atras.jpg`, `${__dirname}/data/perfil.jpg`],
+    }
+
+    await waitForPostCar(page, current_listing);
 
 } catch (error) {
     console.log("Error:");

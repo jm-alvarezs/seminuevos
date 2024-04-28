@@ -45,6 +45,8 @@ export interface Location {
 export interface CarListing {
     phone: string;
     price: number;
+    pictures: Array<string>;
+    description: string;
     negotiable: Negotiable;
     location: Location;
     car: CarData;

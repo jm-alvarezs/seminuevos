@@ -17,6 +17,7 @@ export const car_listing = {
     provinces: "nuevo leon",
     cities: "monterrey",
   },
+  description: "Descripcion prueba",
   negotiable: Negotiable.negociable,
   car: car_data,
 };

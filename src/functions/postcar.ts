@@ -1,4 +1,4 @@
-import { Page } from "puppeteer";
+import { ElementHandle, Page } from "puppeteer";
 import { handleDropdownSelect } from "./dropdown";
 import { CarListing } from "../types";
 import { handleTypeInput } from "./input";
@@ -29,16 +29,25 @@ const postcar = async (page: Page, car_listing: CarListing) => {
     await handleTypeInput(page, { selector: "#input_recorrido", value: String(car.mileage) });
 
     await handleDropdownSelect(page, "mileageType", car.mileageType);
-
-    await handleTypeInput(page, { selector: "#input_teléfono", value: car_listing.phone });
     
-
-    await handleDropdownSelect(page, "negotiable", car_listing.negotiable);
-
     // Pedimos number en car_listing para validar el input, usamos string para capturar
     await handleTypeInput(page, { selector: "#input_precio", value: String(car_listing.price) });
 
-    const next_button = await page.waitForSelector(".next-button");
+    await handleDropdownSelect(page, "negotiable", car_listing.negotiable);
+
+    let next_button = await page.waitForSelector(".next-button");
+    next_button?.click();
+
+    await page.waitForNavigation({ waitUntil: "networkidle0" });
+
+    await handleTypeInput(page, { selector: "#input_text_area_review", value: car_listing.description });
+
+    const input_pictures = await page.waitForSelector("#Uploader") as ElementHandle<HTMLInputElement>;
+    input_pictures?.uploadFile(...car_listing.pictures);
+
+    await page.waitForSelector(`.uploaded-list >>> li:nth-child(0n+${car_listing.pictures.length})`);
+    
+    next_button = await page.waitForSelector(".next-button");
     next_button?.click();
 }
 
