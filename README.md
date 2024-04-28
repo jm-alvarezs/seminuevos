@@ -30,7 +30,7 @@ Proyecto creado con Vite + React Typescript
 ## Ejecución
 
 ### Opción 1: Ejecutar ambos proyectos en desarrollo
-````shell
+```shell
 cd front-end && npm run dev
 cd back-end && npm start
 ```
