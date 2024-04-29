@@ -1,3 +1,4 @@
+import path from "path";
 import { MileageType, Negotiable, VehicleType } from "../types";
 
 const car_data = {
@@ -17,7 +18,6 @@ export const car_listing = {
     provinces: "nuevo leon",
     cities: "monterrey",
   },
-  pictures: [`${__dirname}/frente.jpg`, `${__dirname}/perfil.jpg`, `${__dirname}/atras.jpg`],
   description: "Descripcion prueba",
   negotiable: Negotiable.negociable,
   car: car_data,

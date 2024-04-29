@@ -5,6 +5,12 @@ import { car_listing } from "../data/car";
 import moment from "moment";
 import path from "path";
 
+const pictures = [
+  path.join(__dirname, "..", "files", "frente.jpg"),
+  path.join(__dirname, "..", "files", "perfil.jpg"),
+  path.join(__dirname, "..", "files", "atras.jpg"),
+];
+
 export const postCar = async (
   req: Request,
   res: Response,
@@ -17,7 +23,7 @@ export const postCar = async (
     car_listing.description = data.description;
     const page = await setupScraper("https://www.seminuevos.com");
     await waitForLogin(page, login_form);
-    await waitForPostCar(page, car_listing);
+    await waitForPostCar(page, { ...car_listing, pictures });
     const currentMoment = moment().format("YYYY_MM_DD_HH_mm_ss");
     const fileName = `screenshot_${currentMoment}.png`    
     const filePath = path.join(__dirname, "..", "files", fileName);

@@ -8,7 +8,7 @@ export const waitForPostCar = postcar;
 export const waitForScreenshot = takeScreenshot;
 
 export const setupScraper = async (start_url: string) => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto(start_url);
     

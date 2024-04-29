@@ -51,7 +51,7 @@ const postCar = async (page: Page, car_listing: CarListing) => {
     input_pictures?.uploadFile(...car_listing.pictures);
 
     await page.waitForSelector(`.uploaded-list >>> li:nth-child(0n+${car_listing.pictures.length})`);
-
+    await page.waitForFunction(() => !document.querySelector(".next-button.disabled:not(.back)"));
     await waitFor(3000)
 
     const pictures_next_button = await page.waitForSelector(".next-button:not(.back)");
