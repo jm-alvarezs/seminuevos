@@ -35,10 +35,15 @@ cd front-end && npm run dev
 cd back-end && npm start
 ```
 
+El back-end se ejecuta en http://localhost:4000
+El front-end se ejecuta en http://localhost:5173
+
 ### Opción 2: Ejecutar un sólo proyeto como producción
 ```shell
 ./production.sh
 ```
+
+El proyecto se ejecuta en http://localhost:4000
 
 Se recomienda ejecutar `chmod 700 production.sh` previo a ejecutar el script
 
