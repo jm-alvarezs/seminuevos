@@ -2,7 +2,7 @@ export const login_form = {
     inputs: [
       {
         selector: "#email",
-        value: "jm.alvarezs98@gmail.com",
+        value: "juanmanuel@disrupcion.mx",
       },
       {
         selector: "#password",
