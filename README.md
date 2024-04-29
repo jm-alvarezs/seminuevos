@@ -44,4 +44,4 @@ Se recomienda ejecutar `chmod 700 production.sh` previo a ejecutar el script
 
 Resultado Final
 
-(./result.png)
+![Captura de resultado esperado (./result.png)]
