@@ -40,6 +40,14 @@ const postCar = async (page: Page, car_listing: CarListing) => {
 
     await handleDropdownSelect(page, "negotiable", car_listing.negotiable);
 
+    // El teléfono se solicita cuando es una cuenta nueva
+    try {
+        await page.waitForSelector("#input_teléfono", { timeout: 3000 });
+        await handleTypeInput(page, { selector: "#input_teléfono", value: String(car_listing.phone) })
+    } catch(error) {
+        console.log(`Phone field not found.`);
+    }
+
     const next_button = await page.waitForSelector(".next-button");
     next_button?.click();
 

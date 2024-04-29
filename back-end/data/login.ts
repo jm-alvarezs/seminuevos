@@ -2,11 +2,11 @@ export const login_form = {
     inputs: [
       {
         selector: "#email",
-        value: "juanmanuel@disrupcion.mx",
+        value: "juanmanuel@bemodo.com",
       },
       {
         selector: "#password",
-        value: "Juanmanuel1998",
+        value: "Juanmanuel1998!",
       },
     ],
     submit: {
